@@ -93,12 +93,41 @@ class TriviaGameViewController: UIViewController {
     //Shows a new question
     func getNewQuestion() {
         //If all questions have not been answered...
-        if questions.count > 0 {
+        if category == 0 {
+            if historyQuestions.count > 0 {
+                    currentIndex = Int.random(in: 0..<historyQuestions.count)
+                    currentQuestion = historyQuestions[currentIndex]
+            } else {
+                //Otherwise, end the game.
+                GameOverAlert()
+            }
+        }
+        if category == 1 {
+            if scienceQuestions.count > 0 {
+                currentIndex = Int.random(in: 0..<scienceQuestions.count)
+                currentQuestion = scienceQuestions[currentIndex]
+            } else {
+                //Otherwise, end the game.
+                GameOverAlert()
+            }
+        }
+        if category == 2 {
+            if videoGameQuestions.count > 0 {
+                currentIndex = Int.random(in: 0..<videoGameQuestions.count)
+                currentQuestion = videoGameQuestions[currentIndex]
+            } else {
+                //Otherwise, end the game.
+                GameOverAlert()
+            }
+        }
+        if category == 3 {
+            if questions.count > 0 {
                 currentIndex = Int.random(in: 0..<questions.count)
                 currentQuestion = questions[currentIndex]
-        } else {
-            //Otherwise, end the game.
-            GameOverAlert()
+            } else {
+                //Otherwise, end the game.
+                GameOverAlert()
+            }
         }
     }
     
@@ -117,8 +146,18 @@ class TriviaGameViewController: UIViewController {
     func ShowCorrectAnswerAlert() {
         let correctAlert = UIAlertController(title: "Correct", message: "\(currentQuestion.correctAnswer) is the correct answer!", preferredStyle: .actionSheet)
         let okayAction = UIAlertAction(title: "Thank you!", style: UIAlertAction.Style.default) { UIAlertAction in
-            self.questionsPlaceholder.append(self.questions[self.currentIndex])
-            self.questions.remove(at: self.currentIndex)
+            if self.category == 0 { self.questionsPlaceholder.append(self.historyQuestions[self.currentIndex])
+                self.historyQuestions.remove(at: self.currentIndex)
+            }
+            if self.category == 1 { self.questionsPlaceholder.append(self.scienceQuestions[self.currentIndex])
+                self.scienceQuestions.remove(at: self.currentIndex)
+            }
+            if self.category == 2 { self.questionsPlaceholder.append(self.videoGameQuestions[self.currentIndex])
+                self.videoGameQuestions.remove(at: self.currentIndex)
+            }
+            if self.category == 3 { self.questionsPlaceholder.append(self.questions[self.currentIndex])
+                self.questions.remove(at: self.currentIndex)
+            }
             self.getNewQuestion()
             
         }
@@ -130,8 +169,22 @@ class TriviaGameViewController: UIViewController {
     func ShowIncorrectAnswerAlert(answer: Int) {
         let incorrectAlert = UIAlertController(title: "Incorrect", message: "\(currentQuestion.answers[answer]) is incorrect.", preferredStyle: .actionSheet)
         let okayAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default) { UIAlertAction in
-            self.questionsPlaceholder.append(self.questions[self.currentIndex])
-            self.questions.remove(at: self.currentIndex)
+            if self.category == 0 {
+                self.questionsPlaceholder.append(self.historyQuestions[self.currentIndex])
+                self.historyQuestions.remove(at: self.currentIndex)
+            }
+            if self.category == 1 {
+                self.questionsPlaceholder.append(self.scienceQuestions[self.currentIndex])
+                self.scienceQuestions.remove(at: self.currentIndex)
+            }
+            if self.category == 2 {
+                self.questionsPlaceholder.append(self.videoGameQuestions[self.currentIndex])
+                self.videoGameQuestions.remove(at: self.currentIndex)
+            }
+            if self.category == 3 {
+                self.questionsPlaceholder.append(self.questions[self.currentIndex])
+                self.questions.remove(at: self.currentIndex)
+            }
             self.getNewQuestion()
         }
         incorrectAlert.addAction(okayAction)
@@ -160,10 +213,30 @@ class TriviaGameViewController: UIViewController {
         
         //If there are questions in the placeholder, then use those questions to reset the original questions array
         if !questionsPlaceholder.isEmpty {
-            questionsPlaceholder.append(contentsOf: questions)
-            questions.removeAll()
-            questions = questionsPlaceholder
-            questionsPlaceholder.removeAll()
+            if category == 0 {
+                questionsPlaceholder.append(contentsOf: historyQuestions)
+                historyQuestions.removeAll()
+                historyQuestions = questionsPlaceholder
+                questionsPlaceholder.removeAll()
+            }
+            if category == 1 {
+                questionsPlaceholder.append(contentsOf: scienceQuestions)
+                scienceQuestions.removeAll()
+                scienceQuestions = questionsPlaceholder
+                questionsPlaceholder.removeAll()
+            }
+            if category == 2 {
+                questionsPlaceholder.append(contentsOf: videoGameQuestions)
+                videoGameQuestions.removeAll()
+                videoGameQuestions = questionsPlaceholder
+                questionsPlaceholder.removeAll()
+            }
+            if category == 3 {
+                questionsPlaceholder.append(contentsOf: questions)
+                questions.removeAll()
+                questions = questionsPlaceholder
+                questionsPlaceholder.removeAll()
+            }
         }
         //Get a new question
         getNewQuestion()

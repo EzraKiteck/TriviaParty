@@ -21,7 +21,7 @@ class AddQuestionController: UIViewController {
     @IBOutlet weak var answerCTextField: UITextField!
     @IBOutlet weak var answerDTextField: UITextField!
     @IBOutlet weak var correctAnswerSelection: UISegmentedControl!
-    
+    @IBOutlet weak var categorySelection: UISegmentedControl!
     
     
     override func viewDidLoad() {
@@ -62,6 +62,15 @@ class AddQuestionController: UIViewController {
             let newTriviaQuestion = newQuestion
             else {return}
         destinationVC.questions.append(newTriviaQuestion)
+        if categorySelection.selectedSegmentIndex == 0 {
+            destinationVC.historyQuestions.append(newTriviaQuestion)
+        }
+        if categorySelection.selectedSegmentIndex == 1 {
+            destinationVC.scienceQuestions.append(newTriviaQuestion)
+        }
+        if categorySelection.selectedSegmentIndex == 2 {
+            destinationVC.videoGameQuestions.append(newTriviaQuestion)
+        }
         destinationVC.resetGame()
     }
     

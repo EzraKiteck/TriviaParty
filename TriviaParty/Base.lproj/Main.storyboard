@@ -327,7 +327,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="N6x-br-YxI">
-                                <rect key="frame" x="16" y="76" width="343" height="406.5"/>
+                                <rect key="frame" x="16" y="76" width="343" height="495"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D5T-a4-qzl">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="24"/>
@@ -386,6 +386,20 @@
                                             <segment title="D"/>
                                         </segments>
                                     </segmentedControl>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5p9-tw-MGA">
+                                        <rect key="frame" x="0.0" y="426.5" width="343" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Qd1-X1-coB">
+                                        <rect key="frame" x="0.0" y="467" width="343" height="29"/>
+                                        <segments>
+                                            <segment title="History"/>
+                                            <segment title="Science"/>
+                                            <segment title="Video Games"/>
+                                        </segments>
+                                    </segmentedControl>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -407,7 +421,8 @@
                         <outlet property="answerBTextField" destination="9Dc-Q8-AtH" id="Zyc-qV-5Su"/>
                         <outlet property="answerCTextField" destination="sr4-0q-6JU" id="O8W-Zg-eQe"/>
                         <outlet property="answerDTextField" destination="yDY-8U-XMv" id="Hd8-Ku-MvG"/>
-                        <outlet property="correctAnswerSelection" destination="4S6-f7-IpC" id="j0e-t6-9C7"/>
+                        <outlet property="categorySelection" destination="Qd1-X1-coB" id="Svu-gc-0yS"/>
+                        <outlet property="correctAnswerSelection" destination="4S6-f7-IpC" id="0ag-h2-nhF"/>
                         <outlet property="newQuestionTextField" destination="BiV-qd-JmV" id="cnz-tq-MCj"/>
                         <segue destination="D1D-pp-CcQ" kind="unwind" identifier="unwindToTriviaScreen" unwindAction="unwindToTriviaScreenWithSegue:" id="zZA-tz-kRs"/>
                     </connections>
